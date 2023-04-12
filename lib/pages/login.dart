@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:joooragan/pages/forgot_password.dart';
+import 'package:joooragan/pages/main/index.dart';
 import 'package:joooragan/pages/sign_up.dart';
 import 'package:joooragan/theme.dart';
 
@@ -179,9 +180,14 @@ class _LoginState extends State<Login> {
                           style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(gold)),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                            }
+                            // if (_formKey.currentState!.validate()) {
+                            //   _formKey.currentState!.save();
+
+                            // }
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const MainPage();
+                            }));
                           },
                           child: Text(
                             'Login',
