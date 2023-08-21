@@ -67,11 +67,15 @@ flutter:
     - assets/images/home/
     - assets/images/icon/
     - assets/images/product/
+    - assets/images/eduPopular/
+    - assets/images/hotNews/
     - assets/images/course/
     - assets/images/menu/
     - assets/images/notif/
     - assets/images/cart/
-    - assets/images/icon_cgr_education/
+    - assets/images/icon/YukCatat/
+    - assets/images/icon/mainIcon/
+    - assets/images/icon/education/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

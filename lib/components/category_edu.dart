@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:joooragan/data/dataCtg.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:joooragan/theme.dart';
+import 'package:joooragan/data/dataCtgEdu.dart';
 
-class Category extends StatefulWidget {
-  const Category({super.key});
+class CategoryEdu extends StatefulWidget {
+  const CategoryEdu({super.key});
 
   @override
-  State<Category> createState() => _CategoryState();
+  State<CategoryEdu> createState() => _CategoryEduState();
+
+  static map(Column Function(dynamic ct) param0) {}
 }
 
-class _CategoryState extends State<Category> {
+class _CategoryEduState extends State<CategoryEdu> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 21, right: 20),
+      padding: const EdgeInsets.only(top: 8),
       child: Container(
         width: double.maxFinite,
-        height: 80,
+        height: 100,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: categorys.length,
@@ -56,14 +60,11 @@ class _CategoryState extends State<Category> {
                     child: Text(
                       ct.title,
                       style: semibold.copyWith(fontSize: 10),
-                      
                     ),
                   ),
-                 
                 ],
               );
-            }
-        ),
+            }),
       ),
     );
   }
