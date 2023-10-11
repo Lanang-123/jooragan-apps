@@ -39,6 +39,8 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
   intl: ^0.18.0
   dropdown_button2: ^2.1.4
+  webview_flutter: ^4.2.4
+  dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:

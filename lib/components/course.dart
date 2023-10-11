@@ -8,13 +8,14 @@ class HomeCourse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 21, right: 20),
-      height: 270,
+      alignment: Alignment.topCenter,
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      height: 300,
       child: ListView.builder(
           itemCount: courses.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: const EdgeInsets.only(top: 15),
+              margin: const EdgeInsets.only(top: 5),
               padding: const EdgeInsets.only(
                   left: 13, top: 12, right: 12, bottom: 13),
               width: 389,

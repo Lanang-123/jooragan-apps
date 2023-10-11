@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joooragan/pages/beranda.dart';
+import 'package:joooragan/pages/main/profilePage.dart';
 
 void main() {
   runApp(const MyApp());

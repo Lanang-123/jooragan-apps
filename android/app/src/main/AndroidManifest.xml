@@ -3,7 +3,7 @@
    <application
         android:label="joooragan"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/logojo">
         <activity
             android:name=".MainActivity"
             android:exported="true"
