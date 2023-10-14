@@ -31,10 +31,10 @@ class MostPopularEdu extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const DetailProductPage();
-                    }));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return const DetailProductPage();
+                    // }));
                   },
                   child: Container(
                     margin: const EdgeInsets.only(left: 3),

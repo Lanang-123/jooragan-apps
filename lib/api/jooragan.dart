@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:joooragan/models/CategoryModel.dart';
 import 'package:joooragan/models/Category_Edu_Model.dart';
+import 'package:joooragan/models/ProductModel.dart';
 
 class JooraganService {
   final Dio _dio = Dio();
@@ -47,6 +48,35 @@ class JooraganService {
           }).toList();
 
           return categories;
+        } else {
+          // Kasus di mana data kategori adalah null
+          return [];
+        }
+      } else {
+        // Jika panggilan API gagal, kembalikan List<CategoryModel> kosong atau tangani pesan kesalahan
+        return [];
+      }
+    } catch (error) {
+      // Tangani kesalahan jika terjadi
+      print('Error: $error');
+      return [];
+    }
+  }
+
+  Future<List<Product>> fetchProduct() async {
+    try {
+      final response = await _dio.get(apiUrl + 'products');
+
+      if (response.statusCode == 200) {
+        // Ganti 'categories' dengan kunci yang sesuai di respons API Anda
+        final List<dynamic>? jsonData = response.data['data'];
+
+        if (jsonData != null) {
+          final products = jsonData.map((json) {
+            return Product.fromJson(json);
+          }).toList();
+
+          return products;
         } else {
           // Kasus di mana data kategori adalah null
           return [];
