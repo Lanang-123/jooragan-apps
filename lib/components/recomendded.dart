@@ -28,93 +28,99 @@ class _RecomendedProductState extends State<RecomendedProduct> {
                   // Handle error case
                   return Text('Error: ${snapshot.error}');
                 } else if (snapshot.hasData) {
-                  final products = snapshot.data;
+                  final products = snapshot.data!['data'];
+                  print(products);
                   return ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: products!.length,
                     itemBuilder: (context, index) {
                       final product = products[index];
                       print(product);
-                      return Stack(
-                        children: [
-                          Stack(children: [
-                            SizedBox(
-                              width: 229,
-                              height: 198,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(25),
-                                child: Image.network(
-                                    "https://api.jooragan.id/api/products/images/${product.image}",
-                                    width: 229,
-                                    height: 198,
-                                    fit: BoxFit.cover),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.push(context,
-                                //     MaterialPageRoute(builder: (context) {
-                                //   return const DetailProductPage();
-                                // }));
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(left: 3),
-                                height: 190,
-                                width: 220,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.white.withOpacity(0.1),
-                                      Colors.white.withOpacity(0.4),
-                                      Colors.white.withOpacity(0.2),
-                                      Colors.white.withOpacity(0.2),
-                                      Colors.black.withOpacity(0.8),
-                                    ],
-                                  ),
+                      return Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Stack(
+                          children: [
+                            Stack(children: [
+                              SizedBox(
+                                width: 229,
+                                height: 198,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Image.network(
+                                      "https://api.jooragan.id/api/products/images/${product['image']}",
+                                      width: 229,
+                                      height: 170,
+                                      fit: BoxFit.cover),
                                 ),
                               ),
-                            )
-                          ]),
-                          Positioned(
-                              bottom: 25,
-                              left: 20,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.title,
-                                    style: bold.copyWith(
-                                        fontSize: 15, color: Colors.white),
+                              GestureDetector(
+                                onTap: () {
+                                  // Navigator.push(context,
+                                  //     MaterialPageRoute(builder: (context) {
+                                  //   return const DetailProductPage();
+                                  // }));
+                                },
+                                child: Container(
+                                
+                                  height: 210,
+                                  width: 229,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.white.withOpacity(0.1),
+                                        Colors.white.withOpacity(0.4),
+                                        Colors.white.withOpacity(0.2),
+                                        Colors.white.withOpacity(0.4),
+                                        Colors.black.withOpacity(0.8),
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(
-                                    height: 2,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset('assets/images/rating1.png'),
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(top: 3),
-                                        child: Text(
-                                          '${product.rating}/5',
-                                          style: thin.copyWith(
-                                              fontSize: 10,
-                                              color: Colors.white),
+                                ),
+                              )
+                            ]),
+                            Positioned(
+                                bottom: 25,
+                                left: 20,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product['title'],
+                                      style: bold.copyWith(
+                                          fontSize: 15, color: Colors.white),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/rating1.png'),
+                                        const SizedBox(
+                                          width: 7,
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ))
-                        ],
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 3),
+                                          child: Text(
+                                            "${product['rating']} / 5",
+                                            style: thin.copyWith(
+                                                fontSize: 10,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ))
+                          ],
+                        ),
                       );
                     },
                   );

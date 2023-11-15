@@ -63,32 +63,66 @@ class JooraganService {
     }
   }
 
-  Future<List<Product>> fetchProduct() async {
+
+  Future<Map<String, dynamic>> fetchProduct() async {
     try {
       final response = await _dio.get(apiUrl + 'products');
-
       if (response.statusCode == 200) {
-        // Ganti 'categories' dengan kunci yang sesuai di respons API Anda
-        final List<dynamic>? jsonData = response.data['data'];
-
-        if (jsonData != null) {
-          final products = jsonData.map((json) {
-            return Product.fromJson(json);
-          }).toList();
-
-          return products;
-        } else {
-          // Kasus di mana data kategori adalah null
-          return [];
-        }
+        final Map<String, dynamic> jsonData =
+            Map<String, dynamic>.from(response.data);
+        print(jsonData);
+        return jsonData;
       } else {
-        // Jika panggilan API gagal, kembalikan List<CategoryModel> kosong atau tangani pesan kesalahan
-        return [];
+        // Handle error here, e.g., throw an exception or return an empty Map.
+        throw Exception('Failed to load product data');
       }
-    } catch (error) {
-      // Tangani kesalahan jika terjadi
-      print('Error: $error');
-      return [];
+    } catch (e) {
+      // Handle exceptions, e.g., network errors.
+      throw Exception('Error: $e');
     }
   }
+
+
+  Future<dynamic> searchProduct(String name) async {
+    try {
+      final url = "$apiUrl" + 'products/name/$name';
+      Response response = await _dio.get(url);
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+        if (data != null) {
+          print(data['data']);
+          return data['data'];
+        }
+            
+          
+      } else {
+        print('Gagal mengambil data dari API');
+      }
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
+  Future<dynamic> productByCategory(String id) async {
+    try {
+      final url = "$apiUrl" + 'products/category/$id';
+      Response response = await _dio.get(url);
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+        if (data != null) {
+          return data;
+        }
+            
+          
+      } else {
+        print('Gagal mengambil data dari API');
+      }
+
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
 }

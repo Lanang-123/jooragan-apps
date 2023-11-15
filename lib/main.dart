@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:joooragan/SplashScreen.dart';
 import 'package:joooragan/pages/beranda.dart';
+import 'package:joooragan/pages/main/franchisePage.dart';
+import 'package:joooragan/pages/main/index.dart';
 import 'package:joooragan/pages/main/profilePage.dart';
+import 'package:joooragan/pages/main/transactionPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
             // is not restarted.
 
             ),
-        home: const Beranda());
+        home: const FranchisePage());
   }
 }
 

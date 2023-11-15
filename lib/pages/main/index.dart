@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:joooragan/pages/main/accountPage.dart';
 import 'package:joooragan/pages/main/educationPage.dart';
+import 'package:joooragan/pages/main/franchisePage.dart';
 import 'package:joooragan/pages/main/home.dart';
 import 'package:joooragan/pages/main/transactionPage.dart';
 import 'package:joooragan/pages/main/yctPage.dart';
@@ -18,9 +19,10 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> _pageOptions = [
     HomePage(),
+    FranchisePage(),
     EducationPage(),
     YukCatatPage(),
-    TransactionPage(),
+    // TransactionPage(),
     AccountPage()
   ];
 
@@ -40,7 +42,17 @@ class _MainPageState extends State<MainPage> {
                 width: 20,
                 height: 20,
               ),
-              title: const Text("Home"),
+              title: const Text(
+                "Home",
+              ),
+              selectedColor: Colors.black),
+          SalomonBottomBarItem(
+              icon: Image.asset(
+                'assets/images/menu/franchise.png',
+                width: 20,
+                height: 20,
+              ),
+              title: const Text("Franchise"),
               selectedColor: Colors.black),
           SalomonBottomBarItem(
             icon: Image.asset(
@@ -60,15 +72,15 @@ class _MainPageState extends State<MainPage> {
             title: const Text("YukCatat"),
             selectedColor: Colors.black,
           ),
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              'assets/images/menu/order.png',
-              width: 20,
-              height: 20,
-            ),
-            title: const Text("Order"),
-            selectedColor: Colors.black,
-          ),
+          // SalomonBottomBarItem(
+          //   icon: Image.asset(
+          //     'assets/images/menu/order.png',
+          //     width: 20,
+          //     height: 20,
+          //   ),
+          //   title: const Text("Order"),
+          //   selectedColor: Colors.black,
+          // ),
           SalomonBottomBarItem(
             icon: Image.asset(
               'assets/images/menu/akun.png',

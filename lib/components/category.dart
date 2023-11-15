@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:joooragan/api/jooragan.dart';
 import 'package:joooragan/data/dataCtg.dart';
 import 'package:joooragan/theme.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Category extends StatefulWidget {
-  const Category({super.key});
+  final Function(String)? onCategorySelected;
+  const Category({super.key, this.onCategorySelected});
 
   @override
   State<Category> createState() => _CategoryState();
@@ -21,7 +23,7 @@ class _CategoryState extends State<Category> {
     
 
     return Padding(
-      padding: const EdgeInsets.only(left: 21, right: 20),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
         width: double.maxFinite,
         height: 80,
@@ -29,7 +31,7 @@ class _CategoryState extends State<Category> {
           future: _jooraganService.fetchCategory(),
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return ShimmerCategoryList();
             } else if (snapshot.hasError) {
               // Handle error case
               return Text('Error: ${snapshot.error}');
@@ -49,8 +51,9 @@ class _CategoryState extends State<Category> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Lakukan tindakan yang sesuai saat kategori diklik
-                          // Contoh: Navigasi ke halaman kategori tertentu
+                          if (widget.onCategorySelected != null) {
+                            widget.onCategorySelected!(ct.id.toString());
+                          }
                         },
                         child: Container(
                           height: 47,
@@ -102,6 +105,55 @@ class _CategoryState extends State<Category> {
           },
 ),
 
+      ),
+    );
+  }
+}
+
+
+class ShimmerCategoryList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Color.fromARGB(255, 243, 240, 240),
+      highlightColor: Color.fromARGB(255, 222, 220, 220),
+      period: Duration(milliseconds: 1500), // Atur periode sesuai kebutuhan
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount:
+            5, // Ganti dengan jumlah kategori yang ingin Anda tampilkan sebagai placeholder
+        itemBuilder: (BuildContext context, index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 47,
+                width: 47,
+                margin: const EdgeInsets.only(right: 10, left: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.4, top: 3),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 45,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

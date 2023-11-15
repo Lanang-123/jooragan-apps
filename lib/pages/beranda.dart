@@ -103,7 +103,7 @@ class Beranda extends StatelessWidget {
                   children: [
                     Text(
                       'JOORAGAN',
-                      style: bold.copyWith(color: gold, fontSize: 32),
+                      style: bold.copyWith(color: gold, fontSize: 48),
                     )
                   ],
                 ),
@@ -120,32 +120,7 @@ class Beranda extends StatelessWidget {
                 ),
               ),
               width: width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 200,
-                    child: FilledButton(
-                        style: ButtonStyle(
-                          padding: const MaterialStatePropertyAll(
-                              EdgeInsets.symmetric(vertical: 20)),
-                          backgroundColor: MaterialStatePropertyAll(gold),
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return Login();
-                          }));
-                        },
-                        child: Center(
-                          child: Text(
-                            'START',
-                            style: semibold.copyWith(color: Colors.white),
-                          ),
-                        )),
-                  )
-                ],
-              ),
+              
             ),
           )
         ],
